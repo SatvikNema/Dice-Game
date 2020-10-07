@@ -1,19 +1,42 @@
-var randomNumber1 = Math.floor(Math.random() * 6) + 1;
-var randomNumber2 = Math.floor(Math.random() * 6) + 1;
+var winner = 0, randomNum1, randomNum2, s1, s2, gamesPlayed = 0, p1Won = 0, p2Won = 0,
+  dice1 = document.querySelector(".img1"),
+  dice2 = document.querySelector(".img2"),
+  winner = document.querySelector("h1"),
+  counterone = document.getElementById("counterone"),
+  countertwo = document.getElementById("countertwo"),
+  gamesPlayedElement = document.getElementById("totalPlayed"),
+  winnerText = "";
 
+function genNumbers() {
+  randomNum1 = Math.floor(Math.random() * 6) + 1;
+  randomNum2 = Math.floor(Math.random() * 6) + 1;
+  s1 = "images/dice" + randomNum1 + ".png";
+  s2 = "images/dice" + randomNum2 + ".png";
 
-var s1 = "images/dice" + randomNumber1 + ".png";
-var s2 = "images/dice" + randomNumber2 + ".png";
+  /****CHANGE IMAGES OF HTML**/
+  dice1.setAttribute("src", s1);
+  dice2.setAttribute("src", s2);
 
-/****CHANGE IMAGES OF HTML**/
-document.querySelector(".img1").setAttribute("src", s1);
-document.querySelector(".img2").setAttribute("src", s2);
+  /***CHANGE TITLES AND WRITTEN PARTS IN HTML**/
+  if (randomNum1 > randomNum2){
+    winnerText="Winner: p1";
+    p1Won++;
+  }
 
-/***CHANGE TITLES AND WRITTEN PARTS IN HTML**/
-if (randomNumber1 > randomNumber2) {
-  document.querySelector("h1").innerHTML="p1";
-} else if (randomNumber1 < randomNumber2) {
-  document.querySelector("h1").innerHTML="p2";
-} else {
-  document.querySelector("h1").innerHTML="d";
+  else if (randomNum1 < randomNum2){
+    winnerText="Winner: p2";
+    p2Won++;
+  }
+
+  else winnerText="Draw";
+
+  winner.innerHTML = winnerText;
+  gamesPlayed++;
+  counterone.innerHTML = "Won: "+p1Won;
+  countertwo.innerHTML = "Won: "+p2Won;
+  gamesPlayedElement.innerHTML = "Games played: "+gamesPlayed;
 }
+
+dice1.addEventListener("click", genNumbers);
+dice2.addEventListener("click", genNumbers);
+
