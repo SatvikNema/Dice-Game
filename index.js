@@ -13,11 +13,9 @@ function genNumbers() {
   s1 = "images/dice" + randomNum1 + ".png";
   s2 = "images/dice" + randomNum2 + ".png";
 
-  /****CHANGE IMAGES OF HTML**/
   dice1.setAttribute("src", s1);
   dice2.setAttribute("src", s2);
 
-  /***CHANGE TITLES AND WRITTEN PARTS IN HTML**/
   if (randomNum1 > randomNum2){
     winnerText="Winner: p1";
     p1Won++;
